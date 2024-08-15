@@ -1,0 +1,84 @@
+.formBackground {
+    box-shadow: 2px 10px 18px 0px rgba(189,189,189,1);
+    padding: 15px;
+    border-radius: 10px;
+}
+.formMain {
+    margin: 10px;
+}
+.error {
+    color: #ff0000;
+}
+.stepperSpace {
+    margin: 10px;
+    padding: 10px;
+}
+.cardMain {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 10px;
+}
+.card {
+    height: 200px;
+    width: 240px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.card:hover {
+    cursor: pointer;
+}
+.cardGold {
+    background-color: hsl(46, 98%, 51%);
+    box-shadow: inset rgb(243, 66, 3) 0px 0px 60px -12px;
+}
+.cardPlatinum {
+    background-color: #E5E4E2;
+    box-shadow: inset rgb(45 40 39) 0px 0px 60px -12px;
+}
+.border {
+    border: 2px solid black;
+}
+.orderStyle {
+    padding: 5px 0px;
+    margin: 5px 0px;
+}
+.planStyle {
+    display: flex;
+    justify-content: space-between;   
+}
+.datePicker {
+    display: block;
+    width: 42%;
+    padding: 10px;
+}
+.nextBackBtn {
+    display: flex;
+    gap: 25px;
+}
+@media screen and (max-Width: 480px) {
+    .formBackground {
+        box-shadow: none;
+        padding: 35px 0px;
+        border-radius: none;
+    }
+    .stepperSpace {
+        margin: 0px;
+        padding: 5px;
+    }
+    .cardMain {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .card {
+        width: 300px;
+    }
+    .datePicker {
+        display: block;
+        width: 75%;
+        padding: 10px;
+    }
+}
