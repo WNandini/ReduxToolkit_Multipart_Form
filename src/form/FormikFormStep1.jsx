@@ -5,6 +5,17 @@ import { TextField, Box, Container, Typography, Button } from '@mui/material';
 import './FormStyle.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {form1Data} from '../redux/formDataSlice.jsx';
+import InputField from '../components/InputField.jsx';
+
+const FormField = [
+    { name: 'firstName', placeholder: 'Enter first name' },
+    { name: 'lastName', placeholder: 'Enter last name' },
+    { name: 'email', placeholder: 'Enter your email' },
+    { name: 'companyName', placeholder: 'Enter your company name' },
+    { name: 'companyWebsite', placeholder: 'Enter your company website' },
+    { name: 'state', placeholder: 'Enter your state' },
+    { name: 'zipCode', placeholder: 'Enter your zip code' },
+]
 
 const FormikForm = (props) => {
     const { handleNext } = props;
@@ -42,112 +53,17 @@ const FormikForm = (props) => {
                 <Box className='formMain'>
                     <Typography variant='h5' fontWeight='600'>Personal Information</Typography>
                 </Box>
-                <form className='formWidth' onSubmit={formik.handleSubmit}>
-                    <Box className='formMain'>
-                        <TextField
-                        name="firstName"
-                        type="text"
-                        id="outlined-required"
-                        placeholder="Enter first name"
-                        onChange={formik.handleChange}
-                        value={formik.values.firstName}
-                        autoComplete
-                        fullWidth
+                <form onSubmit={formik.handleSubmit}>
+                    {FormField.map(field => (
+                        <InputField
+                            key={field.name}
+                            name={field.name}
+                            value={formik.values[field.name]}
+                            onChange={formik.handleChange}
+                            error={formik.touched[field.name] && formik.errors[field.name]}
+                            placeholder={field.placeholder}
                         />
-                        {formik.touched.firstName && formik.errors.firstName ? (
-                        <Typography variant="caption" className='error'>{formik.errors.firstName}</Typography>
-                        ) : null}
-                    </Box>
-                    <Box className='formMain'> 
-                        <TextField
-                        name="lastName"
-                        type="text"
-                        id="outlined-required"
-                        autoComplete
-                        placeholder="Enter last name"
-                        onChange={formik.handleChange}
-                        value={formik.values.lastName}
-                        fullWidth
-                        />
-                        {formik.touched.lastName && formik.errors.lastName ? (
-                        <Typography variant="caption" className='error'>{formik.errors.lastName}</Typography>
-                        ) : null}
-                    </Box>
-                    <Box className='formMain'> 
-                        <TextField
-                        name="email"
-                        type="text"
-                        id="outlined-required"
-                        autoComplete
-                        placeholder="Enter email id"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        fullWidth
-                        />
-                        {formik.touched.email && formik.errors.email ? (
-                        <Typography variant="caption" className='error'>{formik.errors.email}</Typography>
-                        ) : null}
-                    </Box>
-                    <Box className='formMain'> 
-                        <TextField
-                        name="companyName"
-                        type="text"
-                        id="outlined-required"
-                        autoComplete
-                        placeholder="Enter company name"
-                        onChange={formik.handleChange}
-                        value={formik.values.companyName}
-                        fullWidth
-                        />
-                        {formik.touched.companyName && formik.errors.companyName ? (
-                        <Typography variant="caption" className='error'>{formik.errors.companyName}</Typography>
-                        ) : null}
-                    </Box>
-                    <Box className='formMain'> 
-                        <TextField
-                        name="companyWebsite"
-                        type="text"
-                        id="outlined-required"
-                        autoComplete
-                        placeholder="Enter company website"
-                        onChange={formik.handleChange}
-                        value={formik.values.companyWebsite}
-                        fullWidth
-                        />
-                        {formik.touched.companyWebsite && formik.errors.companyWebsite ? (
-                        <Typography variant="caption" className='error'>{formik.errors.companyWebsite}</Typography>
-                        ) : null}
-                    </Box>
-                    <Box className='formMain'> 
-                        <TextField
-                        name="state"
-                        type="text"
-                        id="outlined-required"
-                        autoComplete
-                        placeholder="Enter state"
-                        onChange={formik.handleChange}
-                        value={formik.values.state}
-                        fullWidth
-                        />
-                        {formik.touched.state && formik.errors.state ? (
-                        <Typography variant="caption" className='error'>{formik.errors.state}</Typography>
-                        ) : null}
-                    </Box>
-                    <Box className='formMain'> 
-                        <TextField
-                        name="zipCode"
-                        type="text"
-                        id="outlined-required"
-                        autoComplete
-                        placeholder="Enter zipCode"
-                        onChange={formik.handleChange}
-                        value={formik.values.zipCode}
-                        fullWidth
-                        />
-                        {formik.touched.zipCode && formik.errors.zipCode ? (
-                        <Typography variant="caption" className='error'>{formik.errors.zipCode}</Typography>
-                        ) : null}
-                    </Box>
+                    ))}
                     <Box className='formMain'>
                         <Button fullWidth variant="outlined" type="submit">Next</Button>
                     </Box>
